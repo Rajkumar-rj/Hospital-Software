@@ -8,6 +8,7 @@ void Doc_list(void);
 float Dose_calculator(void);
 float Drip_speed_calculator (void);
 float Bill_calculator (void);
+void Lab();
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
     int input;
     time_t t;
     time(&t);
-    printf("Welcome To SRM Hospital\t\t\t%s\nEnter '1' for Body Mass Index\n      '2' for Dosage Calculation\n      '3' for Doctor's List\n      '4' for Drip Speed Calculation\n      '5' for Bill Calculation\n",ctime(&t));
+    printf("Welcome To SRM Hospital\t\t\t%s\nEnter '1' for Body Mass Index\n      '2' for Dosage Calculation\n      '3' for Doctor's List\n      '4' for Drip Speed Calculation\n      '5' for Bill Calculation\n      '6' for Laboratory Tools\n",ctime(&t));
     scanf("%d",&input);
     
     
@@ -38,6 +39,13 @@ int main()
     else if (input == 5)
     {
       BILL = Bill_calculator();  
+    }
+    else if (input == 6)
+    {
+        Lab();
+    }
+    else{
+        printf("Invalid Input");
     }
     
     return 0;
@@ -128,4 +136,59 @@ float Bill_calculator (void)
     printf("Tax amount is : ₹%0.2f",Tax);
     printf("\nTotal payable amount is : ₹%0.2f",Total);
 }
+
+void Lab(void)
+{
+    int input;
+    float Glu,LDL;
+    printf("Welcome To SRM Hospital Laboratory\t\t\t\nEnter '1' for Blood Glucose\n      '2' for Blood Cholesterol\n");
+    scanf("%d",&input);
+    
+    switch(input)
+    {
+        case 1:
+        {
+            printf("Enter the fasting blood glucose in mg/dl:");
+            scanf("%f",&Glu);
+            if (Glu<80)
+            {
+                printf("Patient has hypoglycemia");
+            }
+            else if (Glu>=80 && Glu <100)
+            {
+                printf("Patient has normal blood glucose levels");
+            }
+            else if (Glu>=100 && Glu <120)
+            {
+                printf("Patient is borderline diabetic");
+            }
+            else if (Glu>=120)
+            {
+                printf("Patient is diabetic");
+            }
+            break;
+        }
+        case 2:
+        {
+          printf("Enter the Low Density Lipoprotein level in mg/dl:");
+            scanf("%f",&LDL);
+            if (LDL<100)
+            {
+                printf("Patient has normal LDL values");
+            }
+            else 
+            {
+                printf("Patient has abnormal LDL Values");
+            }
+            break;  
+        }
+    }
+    
+    
+    
+    
+}
+
+
+
 
