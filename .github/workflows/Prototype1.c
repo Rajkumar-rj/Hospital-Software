@@ -7,15 +7,15 @@ float BMI_calculator(void);
 void Doc_list(void);
 float Dose_calculator(void);
 float Drip_speed_calculator (void);
-
+float Bill_calculator (void);
 
 int main()
 {
-    float BMI,DOSE,DRIP;
+    float BMI,DOSE,DRIP,BILL;
     int input;
     time_t t;
     time(&t);
-    printf("Welcome To SRM Hospital\t\t\t%s\nEnter '1' for Body Mass Index\n      '2' for Dosage Calculation\n      '3' for Doctor's List\n      '4' for Drip Speed Calculation\n",ctime(&t));
+    printf("Welcome To SRM Hospital\t\t\t%s\nEnter '1' for Body Mass Index\n      '2' for Dosage Calculation\n      '3' for Doctor's List\n      '4' for Drip Speed Calculation\n      '5' for Bill Calculation\n",ctime(&t));
     scanf("%d",&input);
     
     
@@ -35,7 +35,10 @@ int main()
     {
         DRIP = Drip_speed_calculator();
     }
-       
+    else if (input == 5)
+    {
+      BILL = Bill_calculator();  
+    }
     
     return 0;
 }
@@ -111,5 +114,18 @@ float Drip_speed_calculator (void)
     req = (speed*pt_weight*bag_volume)/bag_weight;
     printf("\nThe required drip speed is %0.2f ml/hr ",req);
     
+}
+
+float Bill_calculator (void)
+{
+    float Med,Doc,Tax,Total;
+    printf("Kindly enter the doctor fees:₹");
+    scanf("%f",&Doc);
+    printf("Kindly Enter the medicine cost:₹");
+    scanf("%f",&Med);
+    Tax = 0.12*Med;
+    Total = Med+Doc+Tax;
+    printf("Tax amount is : ₹%0.2f",Tax);
+    printf("\nTotal payable amount is : ₹%0.2f",Total);
 }
 
